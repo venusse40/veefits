@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin — Veefits</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- LOGIN SCREEN -->
+  <div class="admin-login" id="adminLogin">
+    <div class="login-card">
+      <h1 class="login-logo">Veefits</h1>
+      <p class="login-sub">Admin Dashboard</p>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="adminPassword" placeholder="Enter admin password" />
+      </div>
+      <button type="button" class="btn-primary login-btn" id="loginBtn">Login</button>
+      <p class="login-error" id="loginError"></p>
+    </div>
+  </div>
+
+  <!-- ADMIN DASHBOARD -->
+  <div class="admin-dashboard" id="adminDashboard" style="display:none">
+
+    <!-- SIDEBAR -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo">Veefits</div>
+      <nav class="admin-nav">
+        <a href="#" class="admin-nav-item active" data-section="products">
+          &#128248; Products
+        </a>
+        <a href="#" class="admin-nav-item" data-section="add">
+          &#10133; Add Product
+        </a>
+        <a href="#" class="admin-nav-item" data-section="stats">
+          &#128200; Overview
+        </a>
+        <a href="index.html" class="admin-nav-item" target="_blank">
+          &#127760; View Store
+        </a>
+      </nav>
+      <button class="admin-logout" id="logoutBtn">&#128275; Logout</button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="admin-main">
+
+      <!-- HEADER -->
+      <div class="admin-header">
+        <div>
+          <h2 id="sectionHeading">My Products</h2>
+          <p id="sectionSub">Manage your Veefits collection</p>
+        </div>
+        <button class="btn-primary add-product-shortcut" id="addProductShortcut">
+          + Add Product
+        </button>
+      </div>
+
+      <!-- OVERVIEW SECTION -->
+      <section class="admin-section" id="section-stats" style="display:none">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <span class="stat-icon">&#128248;</span>
+            <div>
+              <p class="stat-num" id="statTotal">0</p>
+              <p class="stat-label">Total Products</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">&#128140;</span>
+            <div>
+              <p class="stat-num" id="statDresses">0</p>
+              <p class="stat-label">Dresses</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">&#128255;</span>
+            <div>
+              <p class="stat-num" id="statTops">0</p>
+              <p class="stat-label">Tops</p>
+            </div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-icon">&#128717;</span>
+            <div>
+              <p class="stat-num" id="statAccessories">0</p>
+              <p class="stat-label">Accessories</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ADD PRODUCT SECTION -->
+      <section class="admin-section" id="section-add" style="display:none">
+        <div class="add-product-form">
+
+          <!-- Image upload -->
+          <div class="image-upload-area" id="imageUploadArea">
+            <input type="file" id="productImageInput" accept="image/*" multiple style="display:none"/>
+            <div class="upload-placeholder" id="uploadPlaceholder">
+              <span class="upload-icon">&#128247;</span>
+              <p>Click to upload product photos</p>
+              <span>JPG, PNG, WEBP — up to 5 images</span>
+            </div>
+            <div class="image-previews" id="imagePreviews"></div>
+          </div>
+
+          <!-- Product details -->
+          <div class="product-form-fields">
+            <div class="form-row">
+              <div class="form-group">
+                <label>Product Name *</label>
+                <input type="text" id="pName" placeholder="e.g. Vintage Denim Jacket" />
+              </div>
+              <div class="form-group">
+                <label>Price (RWF) *</label>
+                <input type="number" id="pPrice" placeholder="e.g. 8000" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Category *</label>
+                <select id="pCategory">
+                  <option value="">Select category</option>
+                  <option value="dresses">Dresses</option>
+                  <option value="tops">Tops</option>
+                  <option value="bottoms">Bottoms</option>
+                  <option value="outerwear">Outerwear</option>
+                  <option value="accessories">Accessories</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Size</label>
+                <select id="pSize">
+                  <option value="One Size">One Size</option>
+                  <option value="XS">XS</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+                  <option value="XXL">XXL</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label>Condition</label>
+                <select id="pCondition">
+                  <option value="Like New">Like New</option>
+                  <option value="Good">Good</option>
+                  <option value="Fair">Fair</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Tag (optional)</label>
+                <select id="pTag">
+                  <option value="">None</option>
+                  <option value="NEW">NEW</option>
+                  <option value="HOT">HOT</option>
+                  <option value="SALE">SALE</option>
+                  <option value="LAST ONE">LAST ONE</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Description (optional)</label>
+              <textarea id="pDesc" rows="3" placeholder="Describe the item, fabric, colour..."></textarea>
+            </div>
+
+            <div class="form-actions">
+              <button type="button" class="btn-primary" id="saveProductBtn">Save Product</button>
+              <button type="button" class="btn-outline" id="clearFormBtn">Clear</button>
+            </div>
+            <p class="save-msg" id="saveMsg"></p>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- PRODUCTS SECTION -->
+      <section class="admin-section" id="section-products">
+
+        <!-- Filters -->
+        <div class="admin-filters">
+          <input type="text" id="adminSearch" placeholder="&#128269;  Search products..." class="admin-search"/>
+          <select id="adminCatFilter" class="admin-filter-select">
+            <option value="all">All Categories</option>
+            <option value="dresses">Dresses</option>
+            <option value="tops">Tops</option>
+            <option value="bottoms">Bottoms</option>
+            <option value="outerwear">Outerwear</option>
+            <option value="accessories">Accessories</option>
+          </select>
+        </div>
+
+        <!-- Products table -->
+        <div class="admin-products-grid" id="adminProductsGrid">
+          <!-- Injected by JS -->
+        </div>
+
+        <p class="no-products" id="noProducts" style="display:none">
+          No products yet. Click "+ Add Product" to get started!
+        </p>
+
+      </section>
+
+    </main>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

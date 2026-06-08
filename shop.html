@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shop — Veefits</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/shop.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body class="shop-page">
+
+  <!-- TOP ANNOUNCEMENT BAR -->
+  <div class="announce-bar">
+    ✨ Free delivery on orders above 20,000 RWF &nbsp;·&nbsp; New arrivals every Friday &nbsp;·&nbsp; WhatsApp us to order
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">Veefits</a>
+    <div class="nav-search-wrap">
+      <input type="text" class="nav-search" id="navSearch" placeholder="Search dresses, tops, accessories..." />
+      <span class="nav-search-icon">&#128269;</span>
+    </div>
+    <div class="nav-icons">
+      <a href="cart.html" class="nav-cart" aria-label="Cart">
+        &#128722;
+        <span class="cart-count">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- CATEGORY PILLS -->
+  <div class="category-pills-wrap">
+    <div class="category-pills" id="categoryPills">
+      <button class="pill active" data-cat="all">All Items</button>
+      <button class="pill" data-cat="dresses">👗 Dresses</button>
+      <button class="pill" data-cat="tops">👚 Tops</button>
+      <button class="pill" data-cat="bottoms">👖 Bottoms</button>
+      <button class="pill" data-cat="outerwear">🧥 Outerwear</button>
+      <button class="pill" data-cat="accessories">👜 Accessories</button>
+    </div>
+  </div>
+
+  <!-- SHOP LAYOUT -->
+  <div class="shop-layout">
+
+
+
+    <!-- MAIN -->
+    <main class="shop-main">
+
+      <!-- TOPBAR -->
+      <div class="shop-topbar">
+        <div class="topbar-left">
+          <span class="results-text"><span id="productCount">0</span> items</span>
+        </div>
+        <div class="topbar-right">
+          <select id="sortSelect" class="sort-select">
+            <option value="newest">Newest</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- PRODUCTS GRID -->
+      <div class="products-grid" id="shopGrid">
+        <!-- Injected by JS -->
+      </div>
+
+    </main>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Veefits</h3>
+        <p>Bold. Sustainable. Yours.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Items</a></li>
+          <li><a href="#">Dresses</a></li>
+          <li><a href="#">Tops</a></li>
+          <li><a href="#">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+          <a href="#">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2025 Veefits. All rights reserved.</p>
+  </footer>
+
+  <script src="js/shop.js"></script>
+</body>
+</html>

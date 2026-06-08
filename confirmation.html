@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Confirmed — Veefits</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/confirmation.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Veefits</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="#" aria-label="Search">&#128269;</a>
+      <a href="cart.html" aria-label="Cart">&#128722; <span class="cart-count">0</span></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- PROGRESS STEPS -->
+  <div class="checkout-progress">
+    <div class="step done">
+      <span class="step-num">&#10003;</span>
+      <span class="step-label">Cart</span>
+    </div>
+    <div class="step-line done"></div>
+    <div class="step done">
+      <span class="step-num">&#10003;</span>
+      <span class="step-label">Details</span>
+    </div>
+    <div class="step-line done"></div>
+    <div class="step done">
+      <span class="step-num">&#10003;</span>
+      <span class="step-label">Payment</span>
+    </div>
+    <div class="step-line done"></div>
+    <div class="step active">
+      <span class="step-num">4</span>
+      <span class="step-label">Confirm</span>
+    </div>
+  </div>
+
+  <!-- CONFIRMATION HERO -->
+  <section class="confirm-hero">
+    <div class="confirm-icon">&#10003;</div>
+    <p class="confirm-tag">✦ Thank you for shopping with us</p>
+    <h1 class="confirm-title">Order Confirmed!</h1>
+    <p class="confirm-sub">Your order has been placed successfully. We'll send you a confirmation email shortly.</p>
+    <div class="order-number">
+      Order <strong id="orderNum">#VF-000000</strong>
+    </div>
+  </section>
+
+  <!-- CONFIRMATION BODY -->
+  <section class="confirm-body">
+
+    <!-- ORDER DETAILS -->
+    <div class="confirm-main">
+
+      <!-- What happens next -->
+      <div class="confirm-card">
+        <h3>What Happens Next?</h3>
+        <div class="steps-list">
+          <div class="next-step">
+            <div class="next-step-icon">&#128235;</div>
+            <div class="next-step-info">
+              <strong>Confirmation Email</strong>
+              <p>You'll receive an email with your order details within a few minutes.</p>
+            </div>
+          </div>
+          <div class="next-step">
+            <div class="next-step-icon">&#128241;</div>
+            <div class="next-step-info">
+              <strong>WhatsApp Update</strong>
+              <p>We'll send you a WhatsApp message once your order is packed and ready.</p>
+            </div>
+          </div>
+          <div class="next-step">
+            <div class="next-step-icon">&#128230;</div>
+            <div class="next-step-info">
+              <strong>Shipping</strong>
+              <p>Your package will be dispatched within 1–2 business days.</p>
+            </div>
+          </div>
+          <div class="next-step">
+            <div class="next-step-icon">&#127873;</div>
+            <div class="next-step-info">
+              <strong>Delivery</strong>
+              <p>Sit back and wait for your fabulous Veefits pieces to arrive!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Order items -->
+      <div class="confirm-card">
+        <h3>Items Ordered</h3>
+        <div id="confirmedItems">
+          <!-- Injected by JS -->
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <div class="confirm-actions">
+        <a href="shop.html" class="btn-primary">Continue Shopping</a>
+        <a href="index.html" class="btn-outline">Back to Home</a>
+      </div>
+
+    </div>
+
+    <!-- SIDEBAR -->
+    <aside class="confirm-sidebar">
+
+      <!-- Order summary -->
+      <div class="confirm-card">
+        <h3>Order Summary</h3>
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="cfSubtotal">$0.00</span>
+        </div>
+        <div class="summary-row">
+          <span>Shipping</span>
+          <span id="cfShipping">$4.99</span>
+        </div>
+        <div class="summary-row">
+          <span>Discount</span>
+          <span id="cfDiscount" style="color:var(--accent)">-$0.00</span>
+        </div>
+        <div class="summary-divider"></div>
+        <div class="summary-row total-row">
+          <span>Total Paid</span>
+          <span id="cfTotal">$0.00</span>
+        </div>
+      </div>
+
+      <!-- Need help -->
+      <div class="confirm-card help-card">
+        <h3>Need Help?</h3>
+        <p>Our team is ready to assist you with your order.</p>
+        <div class="help-options">
+          <a href="#" class="help-btn">&#128235; Email Us</a>
+          <a href="#" class="help-btn whatsapp-btn">&#128242; WhatsApp</a>
+        </div>
+      </div>
+
+      <!-- Share -->
+      <div class="confirm-card share-card">
+        <h3>Share the Love &#10084;</h3>
+        <p>Tell your friends about Veefits!</p>
+        <div class="share-btns">
+          <a href="#" class="share-btn">Instagram</a>
+          <a href="#" class="share-btn">TikTok</a>
+          <a href="#" class="share-btn">WhatsApp</a>
+        </div>
+      </div>
+
+    </aside>
+
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Veefits</h3>
+        <p>Bold. Sustainable. Yours.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Items</a></li>
+          <li><a href="shop.html?category=dresses">Dresses</a></li>
+          <li><a href="shop.html?category=tops">Tops</a></li>
+          <li><a href="shop.html?category=accessories">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+          <a href="#">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2025 Veefits. All rights reserved.</p>
+  </footer>
+
+  <script src="js/confirmation.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

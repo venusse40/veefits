@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Your Cart — Veefits</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/cart.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">Veefits</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="nav-icons">
+      <a href="#" aria-label="Search">&#128269;</a>
+      <a href="cart.html" aria-label="Cart">&#128722; <span class="cart-count">0</span></a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+
+  <!-- PAGE HEADER -->
+  <section class="cart-header">
+    <p class="hero-tag">✦ Almost there</p>
+    <h1 class="cart-title">Your Cart</h1>
+    <p class="cart-subtitle">Review your picks before checkout</p>
+  </section>
+
+  <!-- CART BODY -->
+  <section class="cart-body">
+
+    <!-- CART ITEMS -->
+    <div class="cart-items-wrap">
+
+      <!-- Empty state (shown when cart is empty) -->
+      <div class="cart-empty" id="cartEmpty">
+        <div class="empty-icon">&#128722;</div>
+        <h3>Your cart is empty</h3>
+        <p>Looks like you haven't added anything yet.</p>
+        <a href="shop.html" class="btn-primary">Browse Collection</a>
+      </div>
+
+      <!-- Cart items list -->
+      <div id="cartItemsList">
+        <!-- Items injected by JS -->
+      </div>
+
+      <!-- Continue shopping -->
+      <a href="shop.html" class="continue-link" id="continueLink" style="display:none">
+        ← Continue Shopping
+      </a>
+
+    </div>
+
+    <!-- ORDER SUMMARY -->
+    <aside class="order-summary" id="orderSummary" style="display:none">
+      <h3>Order Summary</h3>
+
+      <div class="summary-row">
+        <span>Subtotal</span>
+        <span id="subtotalVal">$0.00</span>
+      </div>
+      <div class="summary-row">
+        <span>Shipping</span>
+        <span id="shippingVal">Calculated at checkout</span>
+      </div>
+      <div class="summary-row discount-row">
+        <span>Discount</span>
+        <span id="discountVal" class="discount-amount">-$0.00</span>
+      </div>
+      <div class="summary-divider"></div>
+      <div class="summary-row total-row">
+        <span>Total</span>
+        <span id="totalVal">$0.00</span>
+      </div>
+
+      <!-- Promo code -->
+      <div class="promo-wrap">
+        <input type="text" id="promoInput" placeholder="Promo code" />
+        <button id="promoBtn">Apply</button>
+      </div>
+      <p class="promo-msg" id="promoMsg"></p>
+
+      <!-- Checkout button -->
+      <a href="checkout.html" class="btn-primary checkout-btn" id="checkoutBtn">
+  Proceed to Checkout &#10140;
+</a>
+
+      <div class="secure-note">
+        &#128274; Secure checkout &nbsp;·&nbsp; Free returns
+      </div>
+
+      <!-- Accepted payments -->
+      <div class="payment-icons">
+        <span>VISA</span>
+        <span>MC</span>
+        <span>PayPal</span>
+        <span>Stripe</span>
+      </div>
+
+    </aside>
+
+  </section>
+
+  <!-- YOU MAY ALSO LIKE -->
+  <section class="also-like" id="alsoLike">
+    <h2 class="section-title">You May Also Like</h2>
+    <p class="section-subtitle">More handpicked pieces for you</p>
+    <div class="also-like-grid">
+
+      <div class="product-card">
+        <div class="product-img-placeholder"></div>
+        <div class="product-info">
+          <p class="product-cat">Tops</p>
+          <h3>Silk Button Shirt</h3>
+          <div class="product-bottom">
+            <span class="price">$16.00</span>
+            <button class="btn-add-cart" data-name="Silk Button Shirt" data-price="16.00">+ Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img-placeholder"></div>
+        <div class="product-info">
+          <p class="product-cat">Dresses</p>
+          <h3>Vintage Tea Dress</h3>
+          <div class="product-bottom">
+            <span class="price">$20.00</span>
+            <button class="btn-add-cart" data-name="Vintage Tea Dress" data-price="20.00">+ Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img-placeholder"></div>
+        <div class="product-info">
+          <p class="product-cat">Accessories</p>
+          <h3>Beaded Bracelet Set</h3>
+          <div class="product-bottom">
+            <span class="price">$7.50</span>
+            <button class="btn-add-cart" data-name="Beaded Bracelet Set" data-price="7.50">+ Cart</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-card">
+        <div class="product-img-placeholder"></div>
+        <div class="product-info">
+          <p class="product-cat">Bottoms</p>
+          <h3>Flowy Midi Skirt</h3>
+          <div class="product-bottom">
+            <span class="price">$17.00</span>
+            <button class="btn-add-cart" data-name="Flowy Midi Skirt" data-price="17.00">+ Cart</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Veefits</h3>
+        <p>Bold. Sustainable. Yours.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Items</a></li>
+          <li><a href="shop.html?category=dresses">Dresses</a></li>
+          <li><a href="shop.html?category=tops">Tops</a></li>
+          <li><a href="shop.html?category=accessories">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Returns</a></li>
+          <li><a href="#">Shipping</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="socials">
+          <a href="#">Instagram</a>
+          <a href="#">TikTok</a>
+          <a href="#">WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2025 Veefits. All rights reserved.</p>
+  </footer>
+
+  <script src="js/cart.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

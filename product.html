@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Product — Veefits</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/product.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+  <!-- ANNOUNCE BAR -->
+  <div class="announce-bar">
+    ✨ Free delivery on orders above 20,000 RWF &nbsp;·&nbsp; New arrivals every Friday &nbsp;·&nbsp; WhatsApp us to order
+  </div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <button class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </button>
+    <a href="index.html" class="logo">Veefits</a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="shop.html" class="nav-search-btn">&#128269;</a>
+      <a href="cart.html" class="nav-cart">
+        &#128722; <span class="cart-count">0</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-menu-close" id="mobileMenuClose">✕</button>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="mobile-menu-footer">
+      <p>&#128242; WhatsApp us to order</p>
+    </div>
+  </div>
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="index.html">Home</a>
+    <span>›</span>
+    <a href="shop.html">Shop</a>
+    <span>›</span>
+    <span id="breadcrumbName">Product</span>
+  </div>
+
+  <!-- PRODUCT DETAIL -->
+  <section class="product-detail" id="productDetail">
+
+    <!-- LEFT: IMAGES -->
+    <div class="product-images">
+      <div class="main-image-wrap">
+        <img src="" alt="" class="main-image" id="mainImage" />
+        <div class="main-image-placeholder" id="mainImagePlaceholder">👗</div>
+        <span class="product-badge badge-new" id="productBadge" style="display:none"></span>
+      </div>
+      <div class="image-thumbs" id="imageThumbs">
+        <!-- Injected by JS -->
+      </div>
+    </div>
+
+    <!-- RIGHT: INFO -->
+    <div class="product-info-panel">
+
+      <p class="product-detail-cat" id="detailCat">Category</p>
+      <h1 class="product-detail-name" id="detailName">Loading...</h1>
+
+      <div class="product-detail-price-row">
+        <span class="product-detail-price" id="detailPrice">0 RWF</span>
+        <span class="product-detail-condition" id="detailCondition">Like New</span>
+      </div>
+
+      <div class="product-detail-meta">
+        <div class="meta-item">
+          <span class="meta-label">Size</span>
+          <span class="meta-val" id="detailSize">—</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Condition</span>
+          <span class="meta-val" id="detailCondition2">—</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Category</span>
+          <span class="meta-val" id="detailCat2">—</span>
+        </div>
+      </div>
+
+      <div class="product-detail-desc" id="detailDesc" style="display:none">
+        <h4>Description</h4>
+        <p id="descText"></p>
+      </div>
+
+      <div class="product-detail-actions">
+        <button class="btn-wa-main" id="waOrderBtn">
+          📲 Order via WhatsApp
+        </button>
+        <button class="btn-wishlist-main" id="wishlistBtn">
+          ♡ Save
+        </button>
+      </div>
+
+      <div class="product-detail-note">
+        <div class="note-item">🚚 Delivery across Rwanda</div>
+        <div class="note-item">✅ Verified condition</div>
+        <div class="note-item">💬 Fast WhatsApp response</div>
+      </div>
+
+      <div class="share-row">
+        <span>Share:</span>
+        <button onclick="shareWA()" class="share-btn">WhatsApp</button>
+        <button onclick="copyLink()" class="share-btn" id="copyBtn">Copy Link</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- YOU MAY ALSO LIKE -->
+  <section class="also-like-section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">You May Also Like</h2>
+        <p class="section-sub">More handpicked pieces</p>
+      </div>
+      <a href="shop.html" class="see-all">See All →</a>
+    </div>
+    <div class="home-products-grid" id="alsoLikeGrid">
+      <!-- Injected by JS -->
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="contact">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <h3>Veefits</h3>
+        <p>Bold. Sustainable. Yours.</p>
+        <p style="margin-top:12px;font-size:13px;">📍 Kigali, Rwanda</p>
+      </div>
+      <div class="footer-links">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="shop.html">All Items</a></li>
+          <li><a href="shop.html?cat=dresses">Dresses</a></li>
+          <li><a href="shop.html?cat=tops">Tops</a></li>
+          <li><a href="shop.html?cat=accessories">Accessories</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Help</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="#">Sizing Guide</a></li>
+          <li><a href="#">Returns Policy</a></li>
+          <li><a href="#">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-social">
+        <h4>Follow Us</h4>
+        <div class="socials">
+          <a href="#">📷 Instagram</a>
+          <a href="#">🎵 TikTok</a>
+          <a href="#">💬 WhatsApp</a>
+        </div>
+      </div>
+    </div>
+    <p class="footer-bottom">&copy; 2025 Veefits. All rights reserved. Made with ♥ in Rwanda.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>
