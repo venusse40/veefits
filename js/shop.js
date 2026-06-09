@@ -1,4 +1,6 @@
-const WA_NUMBER = '250700000000'; // ← Change to your WhatsApp number
+const WA_NUMBER = '250785151401'; // ← replace with your real number
+
+const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFfviAg2YVAss8sHB23_ExdCN-qrwtM4og9iRzRRWa7RfXQNs63e2DGoKJa4AHqcaNvcoZYbbRf77e/pub?gid=0&single=true&output=csv';
 const API_BASE = 'http://localhost:3000/api';
 
 function sanitizeImages(images) {
