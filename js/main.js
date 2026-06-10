@@ -1,25 +1,68 @@
 // ===== CONFIG — update these two values =====
-const WA_NUMBER = '250785151401';
-const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFfviAg2YVAss8sHB23_ExdCN-qrwtM4og9iRzRRWa7RfXQNs63e2DGoKJa4AHqcaNvcoZYbbRf77e/pub?gid=0&single=true&output=csv';
+const WA_NUMBER = VEEFITS.whatsapp;
+const SHEET_URL = VEEFITS.sheetURL;
 
 // ===== FETCH PRODUCTS FROM GOOGLE SHEETS =====
 async function fetchProducts() {
+  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFfviAg2YVAss8sHB23_ExdCN-qrwtM4og9iRzRRWa7RfXQNs63e2DGoKJa4AHqcaNvcoZYbbRf77e/pub?gid=0&single=true&output=csv';
+
+  // Try direct fetch first
   try {
     const res = await fetch(SHEET_URL);
-    const csv = await res.text();
+    if (res.ok) {
+      const csv = await res.text();
+      return parseCSV(csv);
+    }
+  } catch (e) {
+    console.warn('Direct fetch failed, trying proxy...');
+  }
+
+  // Try with proxy
+  try {
+    const PROXY = 'https://api.allorigins.win/raw?url=';
+    const res = await fetch(PROXY + encodeURIComponent(SHEET_URL));
+    if (res.ok) {
+      const csv = await res.text();
+      return parseCSV(csv);
+    }
+  } catch (e) {
+    console.warn('Proxy fetch failed, using localStorage...');
+  }
+
+  // Fall back to localStorage
+  return JSON.parse(localStorage.getItem('veeProducts') || '[]');
+}
+
+function parseCSV(csv) {
+  try {
     const rows = csv.trim().split('\n');
+    if (rows.length < 2) return [];
     const headers = rows[0].split(',').map(h => h.trim().replace(/"/g, ''));
     const products = rows.slice(1).map(row => {
-      const cols = row.match(/(".*?"|[^,]+)(?=,|$)/g) || [];
+      const cols = [];
+      let current = '';
+      let inQuotes = false;
+      for (let i = 0; i < row.length; i++) {
+        const ch = row[i];
+        if (ch === '"') {
+          inQuotes = !inQuotes;
+        } else if (ch === ',' && !inQuotes) {
+          cols.push(current.trim());
+          current = '';
+        } else {
+          current += ch;
+        }
+      }
+      cols.push(current.trim());
       const obj = {};
       headers.forEach((h, i) => {
         obj[h] = (cols[i] || '').replace(/"/g, '').trim();
       });
       return {
-        id: parseInt(obj.id),
-        name: obj.name,
+        id: parseInt(obj.id) || Date.now(),
+        name: obj.name || '',
         price: parseFloat(obj.price) || 0,
-        category: obj.category?.toLowerCase(),
+        category: (obj.category || '').toLowerCase(),
         size: obj.size || 'One Size',
         condition: obj.condition || 'Like New',
         tag: obj.tag || '',
@@ -28,28 +71,14 @@ async function fetchProducts() {
       };
     }).filter(p => p.name);
 
-    // Save to localStorage as backup
-    localStorage.setItem('veeProducts', JSON.stringify(products));
+    if (products.length > 0) {
+      localStorage.setItem('veeProducts', JSON.stringify(products));
+    }
     return products;
-
-  } catch (err) {
-    console.warn('Sheet fetch failed, using localStorage backup');
+  } catch (e) {
+    console.error('CSV parse error:', e);
     return JSON.parse(localStorage.getItem('veeProducts') || '[]');
   }
-}
-
-// ===== WHATSAPP ORDER =====
-function orderWA(name, price, size) {
-  const msg = encodeURIComponent(
-    `Hello Veefits! 👋\n\nI'd like to order:\n\n🛍️ *${name}*\n📏 Size: ${size}\n💰 Price: ${Number(price).toLocaleString()} RWF\n\nIs it still available?`
-  );
-  window.open(`https://wa.me/${WA_NUMBER}?text=${msg}`, '_blank');
-}
-
-// ===== WISHLIST =====
-function toggleWishlist(btn) {
-  btn.classList.toggle('liked');
-  btn.textContent = btn.classList.contains('liked') ? '♥' : '♡';
 }
 
 // ===== PRODUCT CARD HTML =====

@@ -1,4 +1,5 @@
-const WA_NUMBER = '250700000000';
+const WA_NUMBER = VEEFITS.whatsapp;
+const SHEET_URL = VEEFITS.sheetURL;
 
 // ===== GET PRODUCT ID FROM URL =====
 function getParam(key) {

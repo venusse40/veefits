@@ -1,3 +1,6 @@
+const WA_NUMBER = VEEFITS.whatsapp;
+const SHEET_URL = VEEFITS.sheetURL;
+
 // ===== LOAD CART =====
 const cart = JSON.parse(localStorage.getItem('veeCart') || '[]');
 const cartCountEl = document.querySelector('.cart-count');

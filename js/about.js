@@ -1,4 +1,4 @@
-const WA_NUMBER = '250785151401'; // ← your number
+const WA_NUMBER = VEEFITS.whatsapp;
 
 // Update WhatsApp links
 const waContactBtn = document.getElementById('waContactBtn');

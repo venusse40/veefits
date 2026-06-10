@@ -1,4 +1,5 @@
-const WA_NUMBER = '250785151401'; // ← replace with your real number
+const WA_NUMBER = VEEFITS.whatsapp;
+const SHEET_URL = VEEFITS.sheetURL;
 
 const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFfviAg2YVAss8sHB23_ExdCN-qrwtM4og9iRzRRWa7RfXQNs63e2DGoKJa4AHqcaNvcoZYbbRf77e/pub?gid=0&single=true&output=csv';
 const API_BASE = 'http://localhost:3000/api';
@@ -15,14 +16,81 @@ function sanitizeImages(images) {
   });
 }
 
-async function fetchProductsFromApi() {
+async function fetchProducts() {
+  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFfviAg2YVAss8sHB23_ExdCN-qrwtM4og9iRzRRWa7RfXQNs63e2DGoKJa4AHqcaNvcoZYbbRf77e/pub?gid=0&single=true&output=csv';
+
+  // Try direct fetch first
   try {
-    const response = await fetch(`${API_BASE}/products`);
-    if (!response.ok) return [];
-    return await response.json();
-  } catch (error) {
-    console.error('Failed to load products:', error);
-    return [];
+    const res = await fetch(SHEET_URL);
+    if (res.ok) {
+      const csv = await res.text();
+      return parseCSV(csv);
+    }
+  } catch (e) {
+    console.warn('Direct fetch failed, trying proxy...');
+  }
+
+  // Try with proxy
+  try {
+    const PROXY = 'https://api.allorigins.win/raw?url=';
+    const res = await fetch(PROXY + encodeURIComponent(SHEET_URL));
+    if (res.ok) {
+      const csv = await res.text();
+      return parseCSV(csv);
+    }
+  } catch (e) {
+    console.warn('Proxy fetch failed, using localStorage...');
+  }
+
+  // Fall back to localStorage
+  return JSON.parse(localStorage.getItem('veeProducts') || '[]');
+}
+
+function parseCSV(csv) {
+  try {
+    const rows = csv.trim().split('\n');
+    if (rows.length < 2) return [];
+    const headers = rows[0].split(',').map(h => h.trim().replace(/"/g, ''));
+    const products = rows.slice(1).map(row => {
+      const cols = [];
+      let current = '';
+      let inQuotes = false;
+      for (let i = 0; i < row.length; i++) {
+        const ch = row[i];
+        if (ch === '"') {
+          inQuotes = !inQuotes;
+        } else if (ch === ',' && !inQuotes) {
+          cols.push(current.trim());
+          current = '';
+        } else {
+          current += ch;
+        }
+      }
+      cols.push(current.trim());
+      const obj = {};
+      headers.forEach((h, i) => {
+        obj[h] = (cols[i] || '').replace(/"/g, '').trim();
+      });
+      return {
+        id: parseInt(obj.id) || Date.now(),
+        name: obj.name || '',
+        price: parseFloat(obj.price) || 0,
+        category: (obj.category || '').toLowerCase(),
+        size: obj.size || 'One Size',
+        condition: obj.condition || 'Like New',
+        tag: obj.tag || '',
+        desc: obj.desc || '',
+        images: [obj.image1, obj.image2, obj.image3].filter(Boolean)
+      };
+    }).filter(p => p.name);
+
+    if (products.length > 0) {
+      localStorage.setItem('veeProducts', JSON.stringify(products));
+    }
+    return products;
+  } catch (e) {
+    console.error('CSV parse error:', e);
+    return JSON.parse(localStorage.getItem('veeProducts') || '[]');
   }
 }
 
