@@ -17,32 +17,22 @@ function sanitizeImages(images) {
 }
 
 async function fetchProducts() {
-  const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTFfviAg2YVAss8sHB23_ExdCN-qrwtM4og9iRzRRWa7RfXQNs63e2DGoKJa4AHqcaNvcoZYbbRf77e/pub?gid=0&single=true&output=csv';
-
-  // Try direct fetch first
   try {
-    const res = await fetch(SHEET_URL);
+    // Use Netlify function — works perfectly on live site
+    const res = await fetch('/.netlify/functions/products');
     if (res.ok) {
       const csv = await res.text();
-      return parseCSV(csv);
+      const products = parseCSV(csv);
+      if (products.length > 0) {
+        localStorage.setItem('veeProducts', JSON.stringify(products));
+        return products;
+      }
     }
   } catch (e) {
-    console.warn('Direct fetch failed, trying proxy...');
+    console.warn('Netlify function failed, using localStorage...');
   }
 
-  // Try with proxy
-  try {
-    const PROXY = 'https://api.allorigins.win/raw?url=';
-    const res = await fetch(PROXY + encodeURIComponent(SHEET_URL));
-    if (res.ok) {
-      const csv = await res.text();
-      return parseCSV(csv);
-    }
-  } catch (e) {
-    console.warn('Proxy fetch failed, using localStorage...');
-  }
-
-  // Fall back to localStorage
+  // Fallback to localStorage
   return JSON.parse(localStorage.getItem('veeProducts') || '[]');
 }
 
