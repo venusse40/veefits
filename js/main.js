@@ -27,7 +27,12 @@ function parseCSV(csv) {
   try {
     const rows = csv.trim().split('\n');
     if (rows.length < 2) return [];
-    const headers = rows[0].split(',').map(h => h.trim().replace(/"/g, ''));
+
+    // Make headers lowercase to handle any capitalisation
+    const headers = rows[0].split(',').map(h =>
+      h.trim().replace(/"/g, '').toLowerCase()
+    );
+
     const products = rows.slice(1).map(row => {
       const cols = [];
       let current = '';
@@ -44,10 +49,12 @@ function parseCSV(csv) {
         }
       }
       cols.push(current.trim());
+
       const obj = {};
       headers.forEach((h, i) => {
         obj[h] = (cols[i] || '').replace(/"/g, '').trim();
       });
+
       return {
         id: parseInt(obj.id) || Date.now(),
         name: obj.name || '',
@@ -70,7 +77,6 @@ function parseCSV(csv) {
     return JSON.parse(localStorage.getItem('veeProducts') || '[]');
   }
 }
-
 // ===== PRODUCT CARD HTML =====
 function productCardHTML(p) {
   const badgeClass = {
