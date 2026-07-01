@@ -811,6 +811,27 @@ footer {
   .slide-btn { width: 36px; height: 36px; font-size: 18px; }
   .hero-content { padding: 0 20px; }
 }
+.hero-split {
+  display: flex;
+  flex-direction: row;
+  min-height: 100vh;
+  background: #fff;
+}
+
+.hero-split-img {
+  flex: 1.1;
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+}
+
+.hero-split-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
 .hero-split-content {
   flex: 0.9;
   display: flex;
@@ -851,22 +872,6 @@ footer {
   max-width: 380px;
 }
 
-.hero-learn-btn {
-  color: #fff;
-  border-color: rgba(255,255,255,0.25);
-}
-.hero-learn-btn:hover {
-  border-color: var(--accent-light);
-  color: var(--accent-light);
-  background: rgba(201,107,107,0.1);
-}
-
-.hero-split-stats {
-  border-top: 1px solid rgba(255,255,255,0.12);
-}
-.hero-stat span { color: rgba(255,255,255,0.45); }
-.hero-stat-divider { background: rgba(255,255,255,0.12); }
-/* Action buttons */
 .hero-split-actions {
   display: flex;
   gap: 14px;
@@ -891,84 +896,113 @@ footer {
 .hero-shop-btn:hover {
   background: var(--accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 28px rgba(201,107,107,0.4);
 }
 
 .hero-learn-btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  color: var(--dark-text);
+  color: #fff;
   padding: 16px 28px;
   border-radius: 30px;
   font-size: 15px;
   font-weight: 600;
-  border: 1.5px solid var(--border-dark);
+  border: 1.5px solid rgba(255,255,255,0.25);
   transition: all 0.25s;
 }
 .hero-learn-btn:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-  background: var(--accent-pale);
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+  background: rgba(201,107,107,0.1);
 }
 
-/* Stats row */
 .hero-split-stats {
   display: flex;
   align-items: center;
   gap: 0;
   padding: 28px 0;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid rgba(255,255,255,0.12);
 }
 
-.hero-stat {
-  flex: 1;
-  text-align: center;
-}
+.hero-stat { flex: 1; text-align: center; }
 .hero-stat strong {
   display: block;
   font-family: var(--font-display);
   font-size: 28px;
   font-style: italic;
-  color: var(--accent);
+  color: var(--accent-light);
   line-height: 1;
   margin-bottom: 4px;
 }
 .hero-stat span {
   font-size: 11px;
-  color: var(--text-muted);
+  color: rgba(255,255,255,0.45);
   text-transform: uppercase;
   letter-spacing: 0.08em;
 }
 .hero-stat-divider {
   width: 1px;
   height: 40px;
-  background: var(--border);
+  background: rgba(255,255,255,0.12);
   flex-shrink: 0;
 }
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 900px) {
-  .hero-split {
-    flex-direction: column;
-    min-height: auto;
-  }
-  .hero-split-img {
-    min-height: 55vw;
-    flex: none;
-  }
-  .hero-split-content {
-    padding: 48px 28px;
-    flex: none;
-  }
-  .hero-split-inner { max-width: 100%; }
+.hero-split-img .watermark {
+  position: absolute;
+  bottom: 20px;
+  left: 24px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  color: rgba(255,255,255,0.85);
+  z-index: 2;
 }
 
-@media (max-width: 480px) {
-  .hero-split-content { padding: 36px 20px; }
-  .hero-split-title { font-size: 40px; }
-  .hero-split-actions { flex-direction: column; }
-  .hero-shop-btn, .hero-learn-btn { text-align: center; justify-content: center; }
-  .hero-split-brand { font-size: 28px; }
-  .hero-split-overlay { padding: 24px; }
+.hero-split-img {
+  position: relative;
+}
+.about-hero {
+  position: relative;
+  background-image: url('images/clothes-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.about-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(10, 8, 8, 0.75);
+  backdrop-filter: blur(6px);
+  z-index: 1;
+}
+
+.about-hero-content,
+.about-hero-img {
+  position: relative;
+  z-index: 2;
+}
+.about-hero .about-tag {
+  color: var(--accent-light);
+  font-weight: 700;
+}
+
+.about-hero h1,
+.about-hero h1 em {
+  color: #fff;
+  font-weight: 800;
+}
+
+.about-hero p {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+.fade-in-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-card.visible {
+  opacity: 1;
+  transform: translateY(0);
 }

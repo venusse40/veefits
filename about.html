@@ -19,7 +19,7 @@
   </div>
 
   <!-- NAVBAR -->
-  <nav class="navbar">
+  <nav class="navbar navbar-dark">
     <button class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </button>
@@ -54,30 +54,29 @@
   <div class="menu-overlay" id="menuOverlay"></div>
 
   <!-- HERO -->
-  <section class="<img src="images/about.jpg" />about-hero">
-    <div class="about-hero-content">
+  <section class="about-hero">
+    <div class="about-hero-img fade-in-card">
+      <img src="images/founder.jpg" alt="The woman behind Veefits" />
+    </div>
+    <div class="about-hero-content fade-in-card">
       <p class="about-tag">✦ Our Story</p>
       <h1 class="about-title">The Woman<br/><em>Behind Veefits</em></h1>
-      <p class="about-hero-sub">A Rwandan thrift store built with love, style and a vision for sustainable fashion.</p>
+      <p class="about-hero-sub">This is a Rwandan thrift store built with love, style and a vision for sustainable fashion.</p>
     </div>
-    <div class="about-hero-img">
-      <!-- Replace with your photo: <img src="images/about.jpg" alt="Veefits founder" /> -->
-      <div class="about-img-placeholder">👗</div>
-    </div>
+    
   </section>
 
   <!-- OUR STORY -->
   <section class="story-section">
     <div class="story-inner">
-      <div class="story-text">
+      <div class="story-text fade-in-card">
         <h2>How It All Started</h2>
         <p>Veefits was born out of a simple belief — that every woman deserves to look amazing without breaking the bank. Based in Kigali, Rwanda, we started as a small passion online business and grew into a trusted thrift destination for women across the country.</p>
         <p>We handpick every single item in our collection. No bulk buying, no random stock — just carefully selected, quality second-hand pieces that we'd wear ourselves.</p>
         <p>Our mission is simple: make sustainable fashion accessible, fun and completely stress-free for every resilient woman.</p>
       </div>
-      <div class="story-img">
-        <!-- Replace with: <img src="images/story.jpg" alt="Our story" /> -->
-        <div class="story-img-placeholder">✨</div>
+      <div class="story-img fade-in-card">
+        <img src="images/ourstory.jpg" alt="Ourstory" />
       </div>
     </div>
   </section>
@@ -114,7 +113,7 @@
   <section class="stats-section">
     <div class="stats-inner">
       <div class="about-stat">
-        <span id="statCount1">500+</span>
+        <span id="statCount1">300+</span>
         <p>Happy Customers</p>
       </div>
       <div class="about-stat">
@@ -155,7 +154,7 @@
         <div class="step-num">3</div>
         <div class="step-icon">🚚</div>
         <h3>Receive & Enjoy</h3>
-        <p>We confirm availability, arrange payment via MTN MoMo or Airtel Money, and deliver to you fast.</p>
+        <p>We confirm availability, arrange payment via MTN MoMo and deliver to you fast.</p>
       </div>
     </div>
   </section>
@@ -244,7 +243,7 @@
         <h3>Veefits</h3>
         <p>Bold. Sustainable. Yours.</p>
         <p style="margin-top:12px;font-size:13px;">📍 Kigali, Rwanda</p>
-        <p style="font-size:13px;">📲 +250 700 000 000</p>
+        <p style="font-size:13px;">📲 +250 785151401</p>
       </div>
       <div class="footer-links">
         <h4>Shop</h4>
@@ -279,5 +278,14 @@
   <script src="js/main.js"></script>
   <script src="js/about.js"></script>
   <script src="js/config.js"></script>
+  <script>
+    const fadeCards = document.querySelectorAll('.fade-in-card');
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+    fadeCards.forEach(card => fadeObserver.observe(card));
+  </script>
 </body>
 </html>

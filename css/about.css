@@ -1,15 +1,30 @@
 /* ===== ABOUT HERO ===== */
+body {
+  position: relative;
+  background-image: url('../images/clothes-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 8, 8, 0.78);
+  backdrop-filter: blur(6px);
+  z-index: -1;
+}
+
 .about-hero {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 60px;
-  padding: 80px 40px;
-  background: linear-gradient(135deg, #fdf8f5 0%, #fdeaea 60%, #f5edf0 100%);
-  border-bottom: 1px solid var(--border);
-  min-height: 60vh;
+  padding: 100px 60px;
+  min-height: 70vh;
 }
 
-.about-hero-content { flex: 1; }
 
 .about-tag {
   font-size: 12px;
@@ -398,4 +413,107 @@
   .values-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
   .about-hero { padding: 40px 16px; }
   .story-section, .how-section, .contact-section { padding: 48px 16px; }
+}
+/* Full-page dark blurred background */
+body {
+  position: relative;
+  background-image: url('../images/clothes-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 10, 10, 0.25);
+  backdrop-filter: blur(2px);
+  z-index: -1;
+}
+
+.about-hero {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 60px;
+  padding: 100px 60px;
+  min-height: 70vh;
+}
+
+.about-hero-content,
+.about-hero-img {
+  position: relative;
+  z-index: 2;
+}
+
+.about-hero .about-tag {
+  color: var(--accent-light);
+  font-weight: 700;
+}
+
+.about-hero .about-title {
+  color: #fff;
+  font-weight: 800;
+}
+
+.about-hero .about-title em {
+  color: var(--accent-light);
+}
+
+.about-hero .about-hero-sub {
+  color: rgba(255,255,255,0.85);
+  font-weight: 500;
+}
+
+.about-hero-img img {
+  width: 100%;
+  max-width: 380px;
+  border-radius: 16px;
+  object-fit: cover;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+/* Scroll pop-in animation */
+.fade-in-card {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.fade-in-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.story-section,
+.values-section,
+.stats-section,
+.how-section,
+.contact-section {
+  background: transparent;
+  position: relative;
+  z-index: 1;
+}
+
+.story-section h2,
+.values-section h2,
+.values-section p.section-sub,
+.how-section h2,
+.how-section p.section-sub,
+.contact-section h2,
+.contact-text p,
+.story-text h2,
+.story-text p {
+  color: #fff;
+}
+
+.value-card,
+.how-step,
+.contact-form-wrap {
+  background: rgba(255,255,255,0.94);
+}
+
+.story-img img {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
 }

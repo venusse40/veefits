@@ -151,7 +151,7 @@ function initSlider() {
 
   slides.forEach((_, i) => {
     const dot = document.createElement('button');
-    dot.className = 'dot' + (i === 0 ? ' active' : '');
+    dot.className = 'slide-dot' + (i === 0 ? ' active' : '');
     dot.addEventListener('click', () => goTo(i));
     dotsContainer.appendChild(dot);
   });
@@ -174,7 +174,7 @@ function initSlider() {
   document.getElementById('slideNext')?.addEventListener('click', () => goTo(current + 1));
 
   resetTimer();
-}
+} 
 
 // ===== HAMBURGER =====
 const hamburger = document.getElementById('hamburger');

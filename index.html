@@ -3,37 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="google-site-verification" content="7SuxiBdGo0ZhOq_RjECtUZIYT5dimwn2vrCXDxg0Q-k" />
-<meta name="description" content="Veefits — Rwanda's favourite women's thrift store. Handpicked second-hand fashion delivered to your door in Kigali. Order via WhatsApp." />
-<meta name="keywords" content="thrift store Rwanda, women clothes Kigali, second hand fashion Rwanda, Veefits, thrift Kigali" />
-<meta name="author" content="Veefits" />
-<meta name="robots" content="index, follow" />
-
-<!-- Open Graph (for WhatsApp/Facebook previews) -->
-<meta property="og:title" content="Veefits — Women's Thrift Store Rwanda" />
-<meta property="og:description" content="Handpicked second-hand fashion for every woman. Order via WhatsApp, delivered across Rwanda." />
-<meta property="og:image" content="images/hero1.jpg" />
-<meta property="og:url" content="https://veefits.netlify.app" />
-<meta property="og:type" content="website" />
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Veefits — Women's Thrift Store Rwanda" />
-<meta name="twitter:description" content="Handpicked second-hand fashion for every woman in Rwanda." />
-<meta name="twitter:image" content="images/hero1.jpg" />
+  <meta name="description" content="Veefits — Rwanda's favourite women's thrift store. Handpicked second-hand fashion delivered to your door in Kigali." />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Veefits — Women's Thrift Store Rwanda</title>
   <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/home.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <script src="js/config.js"></script>
 </head>
-<body>
+<body class="home-page">
 
   <!-- ANNOUNCE BAR -->
   <div class="announce-bar">
     ✨ Free delivery on orders above 20,000 RWF &nbsp;·&nbsp; New arrivals every Friday &nbsp;·&nbsp; WhatsApp us to order
   </div>
 
-  <!-- NAVBAR -->
-  <nav class="navbar">
+  <!-- NAVBAR (black) -->
+  <nav class="navbar navbar-dark">
     <button class="hamburger" id="hamburger">
       <span></span><span></span><span></span>
     </button>
@@ -67,26 +53,148 @@
   </div>
   <div class="menu-overlay" id="menuOverlay"></div>
 
- <section class="hero-split">
-  <div class="hero-split-img">
-    <img src="images/hero1.jpg" alt="Veefits Fashion" />
-  </div>
-  <div class="hero-split-content">
-    <div class="hero-split-inner">
-      <p class="hero-split-tag">✦ New arrivals every Friday</p>
-      <h1 class="hero-split-title">Your Style,<br/><em>Your Story</em></h1>
-      <p class="hero-split-sub">Handpicked second-hand fashion for every woman in Rwanda. Quality pieces, unbeatable prices.</p>
-      <div class="hero-split-actions">
-        <a href="shop.html" class="hero-shop-btn">🛍️ Shop Now</a>
-        <a href="about.html" class="hero-learn-btn">Learn More →</a>
+  <!-- HERO SLIDER -->
+  <section class="hero-slider">
+    <div class="hero-slides" id="heroSlides">
+
+      <div class="hero-slide active">
+        <img src="images/hero1.jpg" alt="Veefits Collection" class="slide-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-tag">✦ New Arrivals Every Friday</p>
+          <h1>Your Style,<br/><em>Your Story</em></h1>
+          <p class="slide-sub">Handpicked second-hand fashion for every woman in Rwanda.</p>
+          <a href="shop.html" class="slide-btn">🛍️ Shop Now</a>
+        </div>
       </div>
-      <div class="hero-split-stats">
-        <div class="hero-stat"><strong>500+</strong><span>Happy customers</span></div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat"><strong>1,200+</strong><span>Pieces sold</span></div>
-        <div class="hero-stat-divider"></div>
-        <div class="hero-stat"><strong>100%</strong><span>Handpicked</span></div>
+
+      <div class="hero-slide">
+        <img src="images/hero2.jpg" alt="Veefits Style" class="slide-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-tag">✦ Best Sellers</p>
+          <h1>Look Good,<br/><em>Feel Amazing</em></h1>
+          <p class="slide-sub">Unique pieces you won't find anywhere else.</p>
+          <a href="shop.html" class="slide-btn">Browse Collection</a>
+        </div>
+      </div>
+
+      <div class="hero-slide">
+        <img src="images/hero3.jpg" alt="Veefits Rwanda" class="slide-img"/>
+        <div class="slide-overlay"></div>
+        <div class="slide-content">
+          <p class="slide-tag">✦ Delivered Across Rwanda</p>
+          <h1>Sustainable<br/><em>Fashion</em></h1>
+          <p class="slide-sub">Quality thrift pieces delivered to your door in Kigali.</p>
+          <a href="shop.html" class="slide-btn">Explore Now</a>
+        </div>
+      </div>
+
+    </div>
+    <button class="arrow-btn prev" id="slidePrev">&#8249;</button>
+    <button class="arrow-btn next" id="slideNext">&#8250;</button>
+    <div class="slide-dots" id="slideDots"></div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section class="home-categories">
+    <div class="home-categories-inner">
+      <a href="shop.html?cat=dresses" class="home-cat-item">
+        <div class="home-cat-icon">👗</div>
+        <p>Dresses</p>
+      </a>
+      <a href="shop.html?cat=tops" class="home-cat-item">
+        <div class="home-cat-icon">👚</div>
+        <p>Tops</p>
+      </a>
+      <a href="shop.html?cat=bottoms" class="home-cat-item">
+        <div class="home-cat-icon">👖</div>
+        <p>Bottoms</p>
+      </a>
+      <a href="shop.html?cat=outerwear" class="home-cat-item">
+        <div class="home-cat-icon">🧥</div>
+        <p>Outerwear</p>
+      </a>
+      <a href="shop.html?cat=accessories" class="home-cat-item">
+        <div class="home-cat-icon">👜</div>
+        <p>Accessories</p>
+      </a>
+    </div>
+  </section>
+
+  <!-- NEW ARRIVALS -->
+  <section class="home-section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">New Arrivals</h2>
+        <p class="section-sub">Fresh pieces added this week</p>
+      </div>
+      <a href="shop.html" class="see-all">See All →</a>
+    </div>
+    <div class="home-products-grid" id="newArrivalsGrid">
+      <div class="products-loading">⏳ Loading products...</div>
+    </div>
+  </section>
+
+  <!-- PROMO BANNER -->
+  <section class="promo-banner">
+    <div class="promo-banner-inner">
+      <div class="promo-text">
+        <h2>Order via WhatsApp</h2>
+        <p>See something you like? Send us a WhatsApp and we'll sort you out — fast, easy, no stress.</p>
+        <a href="#" class="promo-btn" id="waPromoBtn" target="_blank">
+          &#128242; Chat with Us
+        </a>
+      </div>
+      <div class="promo-img-placeholder">
+        <span>📲</span>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- POPULAR PICKS -->
+  <section class="home-section">
+    <div class="section-head">
+      <div>
+        <h2 class="section-title">Popular Picks</h2>
+        <p class="section-sub">Our most loved thrift finds</p>
+      </div>
+      <a href="shop.html" class="see-all">See All →</a>
+    </div>
+    <div class="home-products-grid" id="popularGrid">
+      <div class="products-loading">⏳ Loading products...</div>
+    </div>
+  </section>
+
+  <!-- HOW TO ORDER -->
+  <section class="how-order-section">
+    <h2 class="section-title" style="text-align:center;margin-bottom:8px;color:#fff;">How to Order</h2>
+    <p class="section-sub" style="text-align:center;margin-bottom:48px;color:rgba(255,255,255,0.7);">It's as easy as 1, 2, 3</p>
+    <div class="how-order-steps">
+      <div class="how-order-step">
+        <div class="how-order-num">1</div>
+        <div class="how-order-icon">👀</div>
+        <h3>Browse the Shop</h3>
+        <p>Find a piece you love. Filter by category, size or price.</p>
+      </div>
+      <div class="how-order-arrow">→</div>
+      <div class="how-order-step">
+        <div class="how-order-num">2</div>
+        <div class="how-order-icon">📲</div>
+        <h3>WhatsApp Us</h3>
+        <p>Click the green WhatsApp button. A pre-filled message opens — just hit send!</p>
+      </div>
+      <div class="how-order-arrow">→</div>
+      <div class="how-order-step">
+        <div class="how-order-num">3</div>
+        <div class="how-order-icon">🚚</div>
+        <h3>Receive & Enjoy</h3>
+        <p>We confirm, you pay via MTN MoMo or Airtel Money, and we deliver fast.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY VEEFITS -->
+  <section class="why-section">
+    <h2 class="section-title" style="text-align:center;margin-bottom:8px;">Why Shop Veefits?</h2>
+    <p
