@@ -27,39 +27,24 @@ function parseCSV(csv) {
   try {
     const rows = csv.trim().split('\n');
     if (rows.length < 2) return [];
-
-    // Make headers lowercase to handle any capitalisation
-    const headers = rows[0].split(',').map(h =>
-      h.trim().replace(/"/g, '').toLowerCase()
-    );
-
+    const headers = rows[0].split(',').map(h => h.trim().replace(/"/g,'').toLowerCase());
     const products = rows.slice(1).map(row => {
       const cols = [];
-      let current = '';
-      let inQuotes = false;
+      let cur = ''; let inQ = false;
       for (let i = 0; i < row.length; i++) {
         const ch = row[i];
-        if (ch === '"') {
-          inQuotes = !inQuotes;
-        } else if (ch === ',' && !inQuotes) {
-          cols.push(current.trim());
-          current = '';
-        } else {
-          current += ch;
-        }
+        if (ch === '"') { inQ = !inQ; }
+        else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
+        else { cur += ch; }
       }
-      cols.push(current.trim());
-
+      cols.push(cur.trim());
       const obj = {};
-      headers.forEach((h, i) => {
-        obj[h] = (cols[i] || '').replace(/"/g, '').trim();
-      });
-
+      headers.forEach((h, i) => { obj[h] = (cols[i]||'').replace(/"/g,'').trim(); });
       return {
         id: parseInt(obj.id) || Date.now(),
         name: obj.name || '',
         price: parseFloat(obj.price) || 0,
-        category: (obj.category || '').toLowerCase(),
+        category: (obj.category||'').toLowerCase(),
         size: obj.size || 'One Size',
         condition: obj.condition || 'Like New',
         tag: obj.tag || '',
@@ -67,13 +52,9 @@ function parseCSV(csv) {
         images: [obj.image1, obj.image2, obj.image3].filter(Boolean)
       };
     }).filter(p => p.name);
-
-    if (products.length > 0) {
-      localStorage.setItem('veeProducts', JSON.stringify(products));
-    }
+    if (products.length > 0) localStorage.setItem('veeProducts', JSON.stringify(products));
     return products;
-  } catch (e) {
-    console.error('CSV parse error:', e);
+  } catch(e) {
     return JSON.parse(localStorage.getItem('veeProducts') || '[]');
   }
 }
@@ -112,22 +93,38 @@ function productCardHTML(p) {
 
 // ===== RENDER HOME GRIDS =====
 async function renderHomeGrids() {
-  const products = await fetchProducts();
-
   const newGrid = document.getElementById('newArrivalsGrid');
   const popGrid = document.getElementById('popularGrid');
 
-  const emptyHTML = (msg) => `
+  // Try Netlify function first, fall back to localStorage
+  let products = [];
+  try {
+    const res = await fetch('/.netlify/functions/products');
+    if (res.ok) {
+      const csv = await res.text();
+      products = parseCSV(csv);
+      if (products.length > 0) {
+        localStorage.setItem('veeProducts', JSON.stringify(products));
+      }
+    }
+  } catch (e) {
+    products = JSON.parse(localStorage.getItem('veeProducts') || '[]');
+  }
+
+  if (products.length === 0) {
+    products = JSON.parse(localStorage.getItem('veeProducts') || '[]');
+  }
+
+  const emptyHTML = `
     <div style="grid-column:1/-1;text-align:center;padding:60px;color:#bbb;">
       <p style="font-size:40px;margin-bottom:12px;">👗</p>
-      <p>${msg}</p>
+      <p>Products coming soon — <a href="admin.html" style="color:var(--accent);">add from admin</a></p>
     </div>`;
 
   if (newGrid) {
-    const newest = products.slice(0, 4);
-    newGrid.innerHTML = newest.length
-      ? newest.map(productCardHTML).join('')
-      : emptyHTML('No products yet — add some from your <a href="admin.html" style="color:var(--accent);">admin page</a>!');
+    newGrid.innerHTML = products.length
+      ? products.slice(0, 4).map(productCardHTML).join('')
+      : emptyHTML;
   }
 
   if (popGrid) {
@@ -136,10 +133,9 @@ async function renderHomeGrids() {
       : products.slice(0, 4);
     popGrid.innerHTML = popular.length
       ? popular.map(productCardHTML).join('')
-      : emptyHTML('More arrivals coming soon!');
+      : emptyHTML;
   }
 }
-
 // ===== HERO SLIDER =====
 function initSlider() {
   const slides = document.querySelectorAll('.hero-slide');
